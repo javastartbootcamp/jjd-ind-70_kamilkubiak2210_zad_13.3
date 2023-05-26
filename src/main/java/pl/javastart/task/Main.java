@@ -6,17 +6,18 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Products products = new Products();
-        List<Products> allProducts;
+        ProductReader productReader = new ProductReader();
+        List<Product> products = null;
         try {
-            allProducts = products.readAllProducts();
+            products = productReader.readAllProducts();
         } catch (IOException e) {
-            throw new RuntimeException("Nie udało się wczytać listy produktów");
+            System.err.println("Nie udało się wczytać pliku");
         }
         try {
-            products.print(allProducts);
+            productReader.printInfoAboutProductsInEuro(products, new CurrencyReader());
         } catch (IOException e) {
-            throw new RuntimeException("Nie udało się wczytać listy walut");
+            System.err.println("Nie udało się wyświetlić informacji");
         }
+
     }
 }
