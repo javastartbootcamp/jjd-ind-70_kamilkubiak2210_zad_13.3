@@ -9,13 +9,10 @@ import java.util.List;
 
 public class CurrencyReader {
 
-    public List<Currency> readAllCurrencies() throws IOException {
+    public List<Currency> readAllCurrencies(String fileName) throws IOException {
         List<Currency> allCurrencyList = new ArrayList<>();
 
-        BufferedReader bufferedReader;
-        String fileName = "src/main/resources/currencies.csv";
-        bufferedReader = new BufferedReader(new FileReader(fileName));
-
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
         String line;
         while ((line = bufferedReader.readLine()) != null) {
             String[] strings = line.split(";");
